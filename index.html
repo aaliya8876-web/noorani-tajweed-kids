@@ -1,0 +1,1555 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4eb">
+  <title>نوراني تجويد كِدز</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Tajawal:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --background: #f7f4eb;
+      --surface: #fffdf8;
+      --ink: #223a38;
+      --muted: #627572;
+      --green: #287568;
+      --green-dark: #205f55;
+      --border: #e4e9de;
+      --shadow: 0 12px 32px rgba(36, 70, 62, .07);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--ink);
+      font-family: "Tajawal", "Noto Naskh Arabic", sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #a66d38;
+      outline-offset: 4px;
+    }
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: none;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      max-width: 1440px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      padding: 30px 18px;
+      border-left: 1px solid var(--border);
+      background: #fffcf5;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px 28px;
+      color: var(--green-dark);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: #e3f0e7;
+    }
+
+    .brand-mark .icon { width: 26px; height: 26px; }
+
+    .nav-list { display: grid; gap: 7px; }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 52px;
+      padding: 9px 13px;
+      border-radius: 15px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover { background: #f0f4e9; }
+
+    .nav-link[aria-current="page"] {
+      color: var(--green-dark);
+      background: #e4f1e8;
+    }
+
+    .main {
+      width: 100%;
+      min-width: 0;
+      padding: clamp(20px, 4vw, 56px);
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      color: var(--green-dark);
+      font-weight: 800;
+    }
+
+    .topline-note {
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 310px;
+      padding: clamp(28px, 5vw, 58px);
+      border: 1px solid #dbe9dd;
+      border-radius: 32px;
+      background: linear-gradient(120deg, #eaf4e9 0%, #f5f4e5 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border: 1px solid rgba(47, 117, 101, .13);
+      border-radius: 50%;
+    }
+
+    .hero::before {
+      width: 340px;
+      height: 340px;
+      left: -115px;
+      top: -145px;
+    }
+
+    .hero::after {
+      width: 250px;
+      height: 250px;
+      left: 40px;
+      bottom: -175px;
+    }
+
+    .hero-copy { max-width: 660px; }
+
+    .bismillah {
+      margin: 0 0 20px;
+      color: var(--green-dark);
+      font-family: "Amiri Quran", "Amiri", serif;
+      font-size: clamp(1.45rem, 3.5vw, 2.25rem);
+      line-height: 2.1;
+    }
+
+    h1, h2, p { margin-top: 0; }
+
+    .hero h1 {
+      margin-bottom: 10px;
+      font-size: clamp(2.15rem, 5vw, 3.65rem);
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .subtitle {
+      margin-bottom: 0;
+      color: var(--green-dark);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    .hero-decor {
+      position: absolute;
+      left: 44px;
+      top: 46px;
+      width: 110px;
+      height: 110px;
+      color: #b48750;
+      opacity: .65;
+    }
+
+    .section-heading {
+      margin: 34px 2px 18px;
+      font-size: 1.55rem;
+      line-height: 1.5;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 172px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+      text-decoration: none;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(36, 70, 62, .11);
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 53px;
+      height: 53px;
+      margin-bottom: 13px;
+      border-radius: 17px;
+      background: var(--card-tint);
+      color: var(--card-color);
+    }
+
+    .card-icon .icon { width: 29px; height: 29px; }
+
+    .card-title {
+      font-size: 1.27rem;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .card-prompt {
+      margin-top: auto;
+      color: var(--muted);
+      font-size: .93rem;
+      font-weight: 700;
+    }
+
+    .placeholder {
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      min-height: 380px;
+      padding: 44px 24px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .placeholder .card-icon {
+      width: 76px;
+      height: 76px;
+      margin-bottom: 20px;
+      border-radius: 24px;
+    }
+
+    .placeholder .card-icon .icon { width: 39px; height: 39px; }
+
+    .placeholder h1 {
+      margin-bottom: 8px;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      line-height: 1.5;
+    }
+
+    .placeholder p {
+      max-width: 420px;
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+
+    .back-link {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 12px;
+      background: #e4f1e8;
+      color: var(--green-dark);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .mobile-nav { display: none; }
+
+    /* Noorani Qaida lessons */
+    .lesson-back { margin-bottom: 22px; }
+
+    .lesson-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .lesson-header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.6;
+    }
+
+    .lesson-number {
+      display: inline-block;
+      margin-bottom: 3px;
+      color: var(--green-dark);
+      font-weight: 800;
+    }
+
+    .lesson-progress { width: min(100%, 270px); }
+
+    .lesson-progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      height: 13px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: #e4e9de;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--green);
+      transition: width .35s ease;
+    }
+
+    .lesson-intro {
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .harakat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .harakat-card,
+    .practice-panel {
+      min-width: 0;
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .harakat-card h2 {
+      margin-bottom: 0;
+      color: var(--green-dark);
+      font-size: 1.55rem;
+      line-height: 1.8;
+    }
+
+    .harakat-card p {
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    .examples {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin-bottom: 20px;
+    }
+
+    .example-button {
+      min-width: 0;
+      min-height: 86px;
+      padding: 0 4px 12px;
+      border: 2px solid transparent;
+      border-radius: 17px;
+      background: var(--example-tint);
+      color: var(--ink);
+      cursor: pointer;
+      font-family: "Amiri Quran", "Amiri", serif;
+      font-size: clamp(2.5rem, 4vw, 3.4rem);
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .example-button[aria-pressed="true"] {
+      border-color: var(--green);
+      background: #e4f1e8;
+    }
+
+    .example-button:hover,
+    .answer-button:hover,
+    .lesson-button:hover {
+      border-color: var(--green);
+    }
+
+    .lesson-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lesson-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 44px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #f5f8f0;
+      color: var(--green-dark);
+      cursor: pointer;
+      font: 700 .95rem "Tajawal", sans-serif;
+    }
+
+    .lesson-button .icon { width: 19px; height: 19px; }
+
+    .lesson-button.primary {
+      border-color: var(--green);
+      background: var(--green);
+      color: white;
+    }
+
+    .audio-status {
+      min-height: 1.5em;
+      margin: 10px 0 0 !important;
+      font-size: .85rem !important;
+    }
+
+    /* Lessons with one spacious card and two example groups. */
+    .sukoon-grid { grid-template-columns: minmax(0, 1fr); }
+
+    .sukoon-card .examples {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .sukoon-card .additional-examples {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .sukoon-card .example-button {
+      font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+    }
+
+    .practice-panel {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .practice-panel h2 {
+      margin-bottom: 4px;
+      font-size: 1.65rem;
+    }
+
+    .practice-panel > p {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .practice-example {
+      display: grid;
+      place-items: center;
+      width: min(100%, 190px);
+      min-height: 160px;
+      margin: 16px auto 24px;
+      padding-bottom: 14px;
+      border-radius: 26px;
+      background: #edf4e9;
+      color: var(--ink);
+      font-family: "Amiri Quran", "Amiri", serif;
+      font-size: clamp(4rem, 9vw, 5.5rem);
+      line-height: 1.8;
+    }
+
+    .answer-choices {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .answer-button {
+      min-width: 130px;
+      min-height: 54px;
+      padding: 9px 16px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      font: 800 1.1rem "Tajawal", sans-serif;
+    }
+
+    .answer-button:disabled { cursor: default; }
+
+    .answer-button.correct {
+      border-color: var(--green);
+      background: #e4f1e8;
+      color: var(--green-dark);
+    }
+
+    .practice-feedback {
+      min-height: 2em;
+      margin: 16px 0 8px;
+      font-weight: 800;
+    }
+
+    .practice-feedback.success {
+      color: var(--green-dark);
+      animation: gentle-appear .35s ease-out;
+    }
+
+    .practice-feedback.hint { color: #95633a; }
+    .next-button[hidden] { display: none; }
+
+    @keyframes gentle-appear {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1120px) {
+      .harakat-grid { grid-template-columns: 1fr; }
+      .sukoon-card .additional-examples {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 850px) {
+      .app-shell { display: block; }
+      .sidebar { display: none; }
+
+      .main { padding: 22px 22px 116px; }
+
+      .mobile-nav {
+        display: flex;
+        position: fixed;
+        z-index: 10;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        gap: 4px;
+        overflow-x: auto;
+        padding: 8px max(12px, env(safe-area-inset-right))
+                 calc(8px + env(safe-area-inset-bottom))
+                 max(12px, env(safe-area-inset-left));
+        border-top: 1px solid var(--border);
+        background: rgba(255, 253, 248, .98);
+        box-shadow: 0 -6px 22px rgba(36, 70, 62, .07);
+        scrollbar-width: thin;
+      }
+
+      .mobile-nav .nav-link {
+        flex: 1 0 98px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px;
+        min-height: 65px;
+        padding: 5px 8px;
+        font-size: .78rem;
+        line-height: 1.35;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .main { padding: 18px 16px 116px; }
+      .topline { margin-bottom: 18px; }
+      .topline-note { display: none; }
+      .hero { min-height: 285px; padding: 26px; }
+      .hero-decor {
+        left: 20px;
+        top: 20px;
+        width: 65px;
+        height: 65px;
+        opacity: .35;
+      }
+      .card-grid { grid-template-columns: 1fr; gap: 12px; }
+      .card { min-height: 145px; }
+      .lesson-header { align-items: stretch; }
+      .lesson-progress { width: 100%; }
+      .harakat-card, .practice-panel { padding: 18px; }
+      .answer-button { flex: 1 1 110px; min-width: 0; }
+      .sukoon-card .examples,
+      .sukoon-card .additional-examples {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card, .progress-fill { transition: none; }
+      .practice-feedback.success { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="icon-home" viewBox="0 0 24 24">
+      <path d="m3 11 9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/>
+    </symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24">
+      <path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"/>
+      <path d="M12 6v14"/>
+    </symbol>
+    <symbol id="icon-pattern" viewBox="0 0 24 24">
+      <path d="m12 2 2.8 5.2L20 4l-1 6 4 2-4 2 1 6-5.2-3.2L12 22l-2.8-5.2L4 20l1-6-4-2 4-2-1-6 5.2 3.2Z"/>
+      <path d="m12 8 4 4-4 4-4-4z"/>
+    </symbol>
+    <symbol id="icon-audio" viewBox="0 0 24 24">
+      <path d="M4 9v6h4l5 4V5L8 9H4Z"/>
+      <path d="M17 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>
+    </symbol>
+    <symbol id="icon-mosque" viewBox="0 0 24 24">
+      <path d="M3 21h18M5 21v-9h14v9M8 12c0-3 2-5 4-6 2 1 4 3 4 6"/>
+      <path d="M12 6V3m-2 18v-5h4v5M2 21v-7m20 7v-7"/>
+    </symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24">
+      <path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21 7 14.2 2 9.3l6.9-1z"/>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24">
+      <path d="M20.5 15.5A9 9 0 0 1 8.5 3.5a9 9 0 1 0 12 12Z"/>
+      <path d="M18 3v4m-2-2h4"/>
+    </symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">
+          <svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>
+        </span>
+        <span>نوراني تجويد كِدز</span>
+      </div>
+      <nav class="nav-list" id="desktop-nav" aria-label="التَّنَقُّلُ الرَّئِيسِيُّ"></nav>
+    </aside>
+
+    <main class="main" id="main-content" tabindex="-1">
+      <div class="topline">
+        <span>نوراني تجويد كِدز</span>
+        <span class="topline-note">رِحْلَةٌ جَمِيلَةٌ لِتَعَلُّمِ الْقُرْآنِ</span>
+      </div>
+      <div id="screen"></div>
+    </main>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="التَّنَقُّلُ الرَّئِيسِيُّ"></nav>
+
+  <script>
+    const sections = [
+      { id: "home", title: "الرَّئِيسِيَّةُ", icon: "home" },
+      {
+        id: "qaida", title: "نُورَانِي قَاعِدَة", icon: "book",
+        tint: "#e4f1e8", color: "#287568"
+      },
+      {
+        id: "tajweed", title: "أَحْكَامُ التَّجْوِيد", icon: "pattern",
+        tint: "#f4e9dd", color: "#95633a"
+      },
+      {
+        id: "practice", title: "تَدْرِيب", icon: "audio",
+        tint: "#e4edf6", color: "#4a7395"
+      },
+      {
+        id: "surahs", title: "السُّوَرُ القَصِيرَة", icon: "mosque",
+        tint: "#ede9f5", color: "#786393"
+      },
+      {
+        id: "progress", title: "تَقَدُّمِي", icon: "star",
+        tint: "#f6efd8", color: "#a48232"
+      }
+    ];
+
+    /*
+      Authorized recordings can be added to each audioUrls object.
+      Licensed recordings take priority. Otherwise, an available Arabic
+      browser voice is used without attributing it to a named reciter.
+    */
+    const qaidaLessons = [
+      {
+        route: "qaida-lesson-1",
+        number: "الدَّرْسُ ١",
+        title: "الحَرَكَاتُ",
+        practicePrompt: "اُنْظُرْ إِلَى الحَرَكَةِ، ثُمَّ اِخْتَرِ اسْمَهَا.",
+        incorrectHint: "حَاوِلْ مَرَّةً أُخْرَى، وَانْظُرْ إِلَى الحَرَكَةِ.",
+        harakat: [
+          {
+            id: "fatha", name: "فَتْحَةٌ",
+            examples: ["بَ", "تَ", "ثَ", "جَ", "حَ", "خَ"],
+            tint: "#e8f2e9", audioUrls: {}
+          },
+          {
+            id: "kasra", name: "كَسْرَةٌ",
+            examples: ["بِ", "تِ", "ثِ", "جِ", "حِ", "خِ"],
+            tint: "#e9f0f7", audioUrls: {}
+          },
+          {
+            id: "damma", name: "ضَمَّةٌ",
+            examples: ["بُ", "تُ", "ثُ", "جُ", "حُ", "خُ"],
+            tint: "#f6eddf", audioUrls: {}
+          }
+        ],
+        questions: [
+          { harakah: "fatha", example: 0 },
+          { harakah: "kasra", example: 1 },
+          { harakah: "damma", example: 2 },
+          { harakah: "fatha", example: 3 },
+          { harakah: "kasra", example: 4 },
+          { harakah: "damma", example: 5 }
+        ]
+      },
+      {
+        route: "qaida-lesson-2",
+        number: "الدَّرْسُ ٢",
+        title: "التَّنْوِينُ",
+        practicePrompt: "مَا اسْمُ هٰذِهِ الحَرَكَةِ؟",
+        incorrectHint: "حَاوِلْ مَرَّةً أُخْرَى.",
+        harakat: [
+          {
+            id: "fathatan", name: "فَتْحَتَانِ",
+            examples: ["بً", "تً", "ثً", "جً", "حً", "خً"],
+            tint: "#e8f2e9", audioUrls: {}
+          },
+          {
+            id: "kasratan", name: "كَسْرَتَانِ",
+            examples: ["بٍ", "تٍ", "ثٍ", "جٍ", "حٍ", "خٍ"],
+            tint: "#e9f0f7", audioUrls: {}
+          },
+          {
+            id: "dammatan", name: "ضَمَّتَانِ",
+            examples: ["بٌ", "تٌ", "ثٌ", "جٌ", "حٌ", "خٌ"],
+            tint: "#f6eddf", audioUrls: {}
+          }
+        ],
+        questions: [
+          { harakah: "fathatan", example: 0 },
+          { harakah: "kasratan", example: 0 },
+          { harakah: "dammatan", example: 0 },
+          { harakah: "fathatan", example: 1 },
+          { harakah: "kasratan", example: 2 },
+          { harakah: "dammatan", example: 3 },
+          { harakah: "fathatan", example: 4 },
+          { harakah: "kasratan", example: 5 },
+          { harakah: "dammatan", example: 5 }
+        ]
+      },
+      {
+        route: "qaida-lesson-3",
+        number: "الدَّرْسُ ٣",
+        title: "السُّكُونُ",
+        practicePrompt: "مَا اسْمُ هٰذِهِ العَلَامَةِ؟",
+        incorrectHint: "حَاوِلْ مَرَّةً أُخْرَى.",
+        harakat: [
+          {
+            id: "sukoon",
+            name: "سُكُونٌ",
+            examples: [
+              "أَبْ", "أَتْ", "أَثْ", "أَجْ", "أَحْ", "أَخْ",
+              "بْ", "تْ", "ثْ", "جْ", "حْ", "خْ", "دْ", "ذْ",
+              "رْ", "سْ", "شْ", "صْ", "ضْ", "طْ", "ظْ",
+              "عْ", "غْ", "فْ", "قْ", "كْ", "لْ", "مْ",
+              "نْ", "هْ", "وْ", "يْ"
+            ],
+            primaryCount: 6,
+            tint: "#e8f2e9",
+            audioUrls: {}
+          }
+        ],
+        answerChoices: [
+          { id: "sukoon", name: "سُكُونٌ" },
+          { id: "fatha", name: "فَتْحَةٌ" },
+          { id: "kasra", name: "كَسْرَةٌ" }
+        ],
+        questions: [
+          { harakah: "sukoon", example: 0 },
+          { harakah: "sukoon", example: 1 },
+          { harakah: "sukoon", example: 2 },
+          { harakah: "sukoon", example: 3 },
+          { harakah: "sukoon", example: 4 },
+          { harakah: "sukoon", example: 5 },
+          { harakah: "sukoon", example: 6 },
+          { harakah: "sukoon", example: 12 },
+          { harakah: "sukoon", example: 19 },
+          { harakah: "sukoon", example: 24 },
+          { harakah: "sukoon", example: 28 },
+          { harakah: "sukoon", example: 31 }
+        ]
+      },
+      {
+        route: "qaida-lesson-4",
+        number: "الدَّرْسُ ٤",
+        title: "التَّشْدِيدُ",
+        lessonNote: "الشَّدَّةُ تَدُلُّ عَلَى حَرْفَيْنِ مُتَمَاثِلَيْنِ: الْأَوَّلُ سَاكِنٌ وَالثَّانِي مُتَحَرِّكٌ.",
+        practicePrompt: "مَا اسْمُ هٰذِهِ العَلَامَةِ؟",
+        incorrectHint: "حَاوِلْ مَرَّةً أُخْرَى.",
+        additionalLabel: "حُرُوفٌ أُخْرَى بِالشَّدَّةِ:",
+        primaryLabel: "أَمْثِلَةٌ مُتَّصِلَةٌ بِالشَّدَّةِ",
+        harakat: [
+          {
+            id: "shadda",
+            name: "شَدَّةٌ",
+            examples: [
+              "أَبَّ", "أَتَّ", "أَجَّ", "أَحَّ", "أَخَّ",
+              "بَّ", "تَّ", "ثَّ", "جَّ", "حَّ", "خَّ",
+              "دَّ", "ذَّ", "رَّ", "زَّ", "سَّ", "شَّ",
+              "صَّ", "ضَّ", "طَّ", "ظَّ", "عَّ", "غَّ",
+              "فَّ", "قَّ", "كَّ", "لَّ", "مَّ", "نَّ",
+              "هَّ", "وَّ", "يَّ"
+            ],
+            primaryCount: 5,
+            tint: "#e8f2e9",
+            audioUrls: {}
+          }
+        ],
+        answerChoices: [
+          { id: "shadda", name: "شَدَّةٌ" },
+          { id: "sukoon", name: "سُكُونٌ" },
+          { id: "fatha", name: "فَتْحَةٌ" }
+        ],
+        questions: [
+          { harakah: "shadda", example: 0 },
+          { harakah: "shadda", example: 1 },
+          { harakah: "shadda", example: 2 },
+          { harakah: "shadda", example: 3 },
+          { harakah: "shadda", example: 4 },
+          { harakah: "shadda", example: 5 },
+          { harakah: "shadda", example: 7 },
+          { harakah: "shadda", example: 12 },
+          { harakah: "shadda", example: 16 },
+          { harakah: "shadda", example: 21 },
+          { harakah: "shadda", example: 27 },
+          { harakah: "shadda", example: 31 }
+        ]
+      },
+      {
+        route: "qaida-lesson-5",
+        number: "الدَّرْسُ ٥",
+        title: "المَدُّ",
+        lessonNote: "مَدٌّ: بَا، بُو، بِي. اِسْمَعْ وَرَدِّدْ.",
+        practicePrompt: "مَا حَرْفُ المَدِّ فِي هٰذَا المِثَالِ؟",
+        incorrectHint: "حَاوِلْ مَرَّةً أُخْرَى.",
+        harakat: [
+          {
+            id: "madd-alif",
+            name: "أَلِفُ المَدِّ — ا",
+            examples: ["بَا", "تَا", "ثَا", "جَا", "حَا", "خَا"],
+            tint: "#e8f2e9",
+            audioUrls: {}
+          },
+          {
+            id: "madd-waw",
+            name: "وَاوُ المَدِّ — و",
+            examples: ["بُو", "تُو", "ثُو", "جُو", "حُو", "خُو"],
+            tint: "#e9f0f7",
+            audioUrls: {}
+          },
+          {
+            id: "madd-ya",
+            name: "يَاءُ المَدِّ — ي",
+            examples: ["بِي", "تِي", "ثِي", "جِي", "حِي", "خِي"],
+            tint: "#f6eddf",
+            audioUrls: {}
+          }
+        ],
+        questions: [
+          { harakah: "madd-alif", example: 0 },
+          { harakah: "madd-waw", example: 0 },
+          { harakah: "madd-ya", example: 0 },
+          { harakah: "madd-alif", example: 1 },
+          { harakah: "madd-waw", example: 2 },
+          { harakah: "madd-ya", example: 3 },
+          { harakah: "madd-alif", example: 4 },
+          { harakah: "madd-waw", example: 5 },
+          { harakah: "madd-ya", example: 5 }
+        ]
+      },
+      {
+        route: "qaida-lesson-6",
+        number: "الدَّرْسُ ٦",
+        title: "النُّونُ السَّاكِنَةُ",
+        lessonNote: "تَأَمَّلْ نُونًا عَلَيْهَا سُكُونٌ فِي الأَمْثِلَةِ.",
+        practicePrompt: "مَا اسْمُ هٰذِهِ النُّونِ؟",
+        incorrectHint: "حَاوِلْ مَرَّةً أُخْرَى.",
+        selectPrompt: "اِخْتَرْ مِثَالًا:",
+        primaryLabel: "أَمْثِلَةٌ لِلنُّونِ السَّاكِنَةِ",
+        additionalLabel: "كَلِمَاتٌ فِيهَا نُونٌ سَاكِنَةٌ:",
+        harakat: [
+          {
+            id: "noon-sakinah",
+            name: "نُونٌ سَاكِنَةٌ",
+            examples: [
+              "أَنْ", "إِنْ", "أُنْ",
+              "مَنْ", "مِنْ", "مُنْ",
+              "عَنْ", "عِنْ", "عُنْ",
+              "لَنْ", "لِنْ", "لُنْ",
+              "أَنْعَامٌ", "أَنْهَارٌ", "مِنْهَا",
+              "مِنْكُمْ", "أَنْتُمْ"
+            ],
+            primaryCount: 12,
+            tint: "#e8f2e9",
+            audioUrls: {}
+          }
+        ],
+        answerChoices: [
+          { id: "noon-sakinah", name: "نُونٌ سَاكِنَةٌ" },
+          { id: "sukoon", name: "سُكُونٌ" },
+          { id: "shadda", name: "شَدَّةٌ" }
+        ],
+        questions: [
+          { harakah: "noon-sakinah", example: 0 },
+          { harakah: "noon-sakinah", example: 1 },
+          { harakah: "noon-sakinah", example: 2 },
+          { harakah: "noon-sakinah", example: 3 },
+          { harakah: "noon-sakinah", example: 4 },
+          { harakah: "noon-sakinah", example: 5 },
+          { harakah: "noon-sakinah", example: 7 },
+          { harakah: "noon-sakinah", example: 10 },
+          { harakah: "noon-sakinah", example: 12 },
+          { harakah: "noon-sakinah", example: 13 },
+          { harakah: "noon-sakinah", example: 14 },
+          { harakah: "noon-sakinah", example: 15 },
+          { harakah: "noon-sakinah", example: 16 }
+        ]
+      }
+    ];
+
+    const screen = document.getElementById("screen");
+    const content = document.getElementById("main-content");
+
+    function createLessonState(lesson) {
+      return {
+        selectedExamples: Object.fromEntries(
+          lesson.harakat.map(item => [item.id, 0])
+        ),
+        questionIndex: 0,
+        answered: false,
+        completed: 0
+      };
+    }
+
+    const lessonStates = new Map(
+      qaidaLessons.map(lesson => [lesson.route, createLessonState(lesson)])
+    );
+
+    let activeLesson = null;
+    let lessonState = null;
+    let activeAudio = null;
+    let audioController = null;
+
+    function icon(name, className = "icon") {
+      return `<svg class="${className}" aria-hidden="true"><use href="#icon-${name}"></use></svg>`;
+    }
+
+    function navigationMarkup() {
+      return sections.map(section => `
+        <a class="nav-link" href="#${section.id}" data-route="${section.id}">
+          ${icon(section.icon)}
+          <span>${section.title}</span>
+        </a>
+      `).join("");
+    }
+
+    document.getElementById("desktop-nav").innerHTML = navigationMarkup();
+    document.getElementById("mobile-nav").innerHTML = navigationMarkup();
+
+    function renderHome() {
+      const cards = sections.filter(section => section.id !== "home");
+
+      screen.innerHTML = `
+        <section class="hero" aria-labelledby="home-title">
+          <div class="hero-copy">
+            <p class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</p>
+            <h1 id="home-title">نوراني تجويد كِدز</h1>
+            <p class="subtitle">تَعَلَّمْ، اِسْمَعْ، رَدِّدْ، وَتَدَرَّبْ</p>
+          </div>
+          ${icon("moon", "icon hero-decor")}
+        </section>
+
+        <section aria-labelledby="explore-title">
+          <h2 class="section-heading" id="explore-title">اِخْتَرْ قِسْمًا لِتَبْدَأَ</h2>
+          <div class="card-grid">
+            ${cards.map(section => `
+              <a class="card" href="#${section.id}"
+                 style="--card-tint:${section.tint};--card-color:${section.color}">
+                <span class="card-icon">${icon(section.icon)}</span>
+                <span class="card-title">${section.title}</span>
+                <span class="card-prompt">اِفْتَحْ القِسْمَ ←</span>
+              </a>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderQaidaIndex() {
+      screen.innerHTML = `
+        <section aria-labelledby="qaida-title">
+          <div class="lesson-header">
+            <h1 id="qaida-title">نُورَانِي قَاعِدَة</h1>
+          </div>
+          <p class="lesson-intro">اِخْتَرْ دَرْسًا لِتَبْدَأَ.</p>
+          <div class="card-grid">
+            ${qaidaLessons.map(lesson => `
+              <a class="card" href="#${lesson.route}"
+                 style="--card-tint:#e4f1e8;--card-color:#287568">
+                <span class="card-icon">${icon("book")}</span>
+                <span class="lesson-number">${lesson.number}</span>
+                <span class="card-title">${lesson.title}</span>
+                <span class="card-prompt">اِفْتَحِ الدَّرْسَ ←</span>
+              </a>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function exampleButtons(harakah, examples, offset = 0) {
+      return examples.map((example, index) => {
+        const actualIndex = index + offset;
+        return `
+          <button type="button"
+                  class="example-button"
+                  data-action="select-example"
+                  data-index="${actualIndex}"
+                  aria-pressed="${
+                    lessonState.selectedExamples[harakah.id] === actualIndex
+                  }"
+                  aria-label="${example}">
+            ${example}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function renderExamples(harakah) {
+      if (!harakah.primaryCount) {
+        return `
+          <div class="examples" role="group" aria-label="${harakah.name}">
+            ${exampleButtons(harakah, harakah.examples)}
+          </div>
+        `;
+      }
+
+      const first = harakah.examples.slice(0, harakah.primaryCount);
+      const additional = harakah.examples.slice(harakah.primaryCount);
+
+      return `
+        <div class="examples" role="group"
+             aria-label="${activeLesson.primaryLabel || "أَمْثِلَةُ السُّكُونِ"}">
+          ${exampleButtons(harakah, first)}
+        </div>
+
+        <p>${activeLesson.additionalLabel || "حُرُوفٌ أُخْرَى بِالسُّكُونِ:"}</p>
+
+        <div class="examples additional-examples"
+             role="group"
+             aria-label="${activeLesson.additionalLabel || "حُرُوفٌ أُخْرَى بِالسُّكُونِ"}">
+          ${exampleButtons(harakah, additional, harakah.primaryCount)}
+        </div>
+      `;
+    }
+
+    function renderLesson() {
+      const lesson = activeLesson;
+      const spaciousLayout = lesson.harakat.some(item => item.primaryCount);
+
+      screen.innerHTML = `
+        <section aria-labelledby="lesson-title">
+          <a class="back-link lesson-back" href="#qaida">
+            الْعَوْدَةُ إِلَى الدُّرُوسِ
+          </a>
+
+          <div class="lesson-header">
+            <div>
+              <span class="lesson-number">${lesson.number}</span>
+              <h1 id="lesson-title">${lesson.title}</h1>
+            </div>
+
+            <div class="lesson-progress" aria-label="تَقَدُّمُ الدَّرْسِ">
+              <div class="lesson-progress-label">
+                <span>تَقَدُّمُ الدَّرْسِ</span>
+                <span id="progress-count"></span>
+              </div>
+              <div class="progress-track"
+                   role="progressbar"
+                   aria-label="تَقَدُّمُ الدَّرْسِ"
+                   aria-valuemin="0"
+                   aria-valuemax="${lesson.questions.length}"
+                   aria-valuenow="0">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          ${lesson.lessonNote
+            ? `<p class="lesson-intro">${lesson.lessonNote}</p>`
+            : ""}
+
+          <p class="lesson-intro">
+            اِخْتَرْ حَرْفًا، ثُمَّ اِسْمَعْ وَرَدِّدْ وَتَدَرَّبْ.
+          </p>
+
+          <div class="harakat-grid ${spaciousLayout ? "sukoon-grid" : ""}">
+            ${lesson.harakat.map(harakah => `
+              <article class="harakat-card ${spaciousLayout ? "sukoon-card" : ""}"
+                       data-harakah="${harakah.id}"
+                       style="--example-tint:${harakah.tint}">
+                <h2>${harakah.name}</h2>
+                <p>${lesson.selectPrompt || "اِخْتَرْ حَرْفًا:"}</p>
+
+                ${renderExamples(harakah)}
+
+                <div class="lesson-actions">
+                  <button type="button" class="lesson-button"
+                          data-action="play"
+                          aria-label="اِسْمَعْ ${harakah.name}">
+                    ${icon("audio")} اِسْمَعْ
+                  </button>
+
+                  <button type="button" class="lesson-button"
+                          data-action="repeat"
+                          aria-label="رَدِّدْ ${harakah.name}">
+                    رَدِّدْ
+                  </button>
+
+                  <button type="button" class="lesson-button"
+                          data-action="go-practice">
+                    تَدَرَّبْ
+                  </button>
+                </div>
+
+                <p class="audio-status" role="status"></p>
+              </article>
+            `).join("")}
+          </div>
+
+          <section class="practice-panel" id="lesson-practice"
+                   aria-labelledby="practice-title">
+            <h2 id="practice-title" tabindex="-1">تَدَرَّبْ</h2>
+            <p id="practice-instruction">${lesson.practicePrompt}</p>
+
+            <div class="practice-example" id="practice-example"
+                 aria-describedby="practice-instruction"></div>
+
+            <div class="answer-choices" id="answer-choices"
+                 role="group" aria-label="اِخْتَرِ العَلَامَةَ"></div>
+
+            <p class="practice-feedback" id="practice-feedback"
+               role="status" aria-live="polite"></p>
+
+            <button type="button" class="lesson-button primary next-button"
+                    id="next-question" data-action="next" hidden>
+              السُّؤَالُ التَّالِي
+            </button>
+          </section>
+        </section>
+      `;
+
+      updateProgress();
+      renderQuestion();
+    }
+
+    function updateProgress() {
+      if (!activeLesson || !screen.querySelector(".progress-track")) return;
+
+      const total = activeLesson.questions.length;
+
+      screen.querySelector(".progress-track")
+        .setAttribute("aria-valuenow", lessonState.completed);
+
+      screen.querySelector("#progress-fill").style.width =
+        `${(lessonState.completed / total) * 100}%`;
+
+      screen.querySelector("#progress-count").textContent =
+        `${lessonState.completed} / ${total}`;
+    }
+
+    function renderQuestion() {
+      const question = activeLesson.questions[lessonState.questionIndex];
+
+      const harakah = activeLesson.harakat.find(
+        item => item.id === question.harakah
+      );
+
+      screen.querySelector("#practice-example").textContent =
+        harakah.examples[question.example];
+
+      const choices = activeLesson.answerChoices || activeLesson.harakat;
+
+      const orderedChoices = activeLesson.answerChoices
+        ? choices.map((_, index) =>
+            choices[(index + lessonState.questionIndex) % choices.length]
+          )
+        : choices;
+
+      screen.querySelector("#answer-choices").innerHTML =
+        orderedChoices.map(item => `
+          <button type="button" class="answer-button"
+                  data-action="answer" data-answer="${item.id}">
+            ${item.name}
+          </button>
+        `).join("");
+
+      const feedback = screen.querySelector("#practice-feedback");
+      feedback.textContent = "";
+      feedback.className = "practice-feedback";
+
+      screen.querySelector("#next-question").hidden = true;
+      lessonState.answered = false;
+    }
+
+    function handleAnswer(button) {
+      if (lessonState.answered) return;
+
+      const question = activeLesson.questions[lessonState.questionIndex];
+      const feedback = screen.querySelector("#practice-feedback");
+
+      if (button.dataset.answer !== question.harakah) {
+        feedback.textContent = activeLesson.incorrectHint;
+        feedback.className = "practice-feedback hint";
+        return;
+      }
+
+      lessonState.answered = true;
+
+      lessonState.completed = Math.max(
+        lessonState.completed,
+        lessonState.questionIndex + 1
+      );
+
+      button.classList.add("correct");
+
+      screen.querySelectorAll(".answer-button").forEach(choice => {
+        choice.disabled = true;
+      });
+
+      feedback.textContent = "أَحْسَنْتَ! ⭐";
+      feedback.className = "practice-feedback success";
+
+      updateProgress();
+
+      const next = screen.querySelector("#next-question");
+
+      next.textContent =
+        lessonState.questionIndex === activeLesson.questions.length - 1
+          ? "أَعِدِ التَّدْرِيبَ"
+          : "السُّؤَالُ التَّالِي";
+
+      next.hidden = false;
+    }
+
+    function stopAudio() {
+      if (audioController) {
+        audioController.abort();
+        audioController = null;
+      }
+
+      if (activeAudio) {
+        activeAudio.pause();
+        activeAudio.currentTime = 0;
+        activeAudio = null;
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function playRecording(url, signal) {
+      return new Promise((resolve, reject) => {
+        if (signal.aborted) {
+          reject(new DOMException("Stopped", "AbortError"));
+          return;
+        }
+
+        const recording = new Audio(url);
+        activeAudio = recording;
+
+        function cleanup() {
+          recording.removeEventListener("ended", onEnded);
+          recording.removeEventListener("error", onError);
+          signal.removeEventListener("abort", onAbort);
+        }
+
+        function onEnded() {
+          cleanup();
+          resolve();
+        }
+
+        function onError() {
+          cleanup();
+          reject(new Error("Audio unavailable"));
+        }
+
+        function onAbort() {
+          recording.pause();
+          cleanup();
+          reject(new DOMException("Stopped", "AbortError"));
+        }
+
+        recording.addEventListener("ended", onEnded);
+        recording.addEventListener("error", onError);
+        signal.addEventListener("abort", onAbort, { once: true });
+        recording.play().catch(onError);
+      });
+    }
+
+    async function playExample(harakah, index, times, status) {
+      stopAudio();
+
+      const controller = new AbortController();
+      audioController = controller;
+
+      const example = harakah.examples[index];
+      const audioUrl = harakah.audioUrls[example];
+
+      screen.querySelectorAll(".audio-status").forEach(element => {
+        element.textContent = "";
+      });
+
+      if (audioUrl) {
+        try {
+          for (let count = 0; count < times; count++) {
+            await playRecording(audioUrl, controller.signal);
+          }
+
+          if (!controller.signal.aborted) {
+            status.textContent = "اِسْمَعْ وَرَدِّدْ.";
+          }
+        } catch {
+          if (!controller.signal.aborted) {
+            status.textContent = "الصَّوْتُ غَيْرُ مُتَاحٍ حَالِيًّا.";
+          }
+        } finally {
+          if (audioController === controller) {
+            audioController = null;
+            activeAudio = null;
+          }
+        }
+
+        return;
+      }
+
+      if (!("speechSynthesis" in window)) {
+        status.textContent = "الصَّوْتُ غَيْرُ مُتَاحٍ حَالِيًّا.";
+        return;
+      }
+
+      const arabicVoice = window.speechSynthesis.getVoices().find(
+        voice => /^ar(?:-|$)/i.test(voice.lang)
+      );
+
+      if (!arabicVoice) {
+        status.textContent = "الصَّوْتُ العَرَبِيُّ غَيْرُ مُتَاحٍ حَالِيًّا.";
+        return;
+      }
+
+      /*
+        Isolated consonants marked with sukoon or shadda are given an
+        أَ onset for the browser-voice fallback. Reviewed recordings
+        remain preferable for teaching pronunciation.
+      */
+      const speechText =
+        (activeLesson.route === "qaida-lesson-3" ||
+         activeLesson.route === "qaida-lesson-4") &&
+        index >= harakah.primaryCount
+          ? `أَ${example}`
+          : example;
+
+      status.textContent = "اِسْمَعْ وَرَدِّدْ.";
+
+      for (let count = 0; count < times; count++) {
+        const utterance = new SpeechSynthesisUtterance(speechText);
+        utterance.lang = arabicVoice.lang;
+        utterance.voice = arabicVoice;
+        utterance.rate = 0.78;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function renderSection(section) {
+      const message = section.id === "progress"
+        ? "سَيَظْهَرُ تَقَدُّمُكَ هُنَا بَعْدَ بَدْءِ التَّعَلُّمِ."
+        : "هٰذَا القِسْمُ قَيْدَ التَّجْهِيزِ.";
+
+      screen.innerHTML = `
+        <section class="placeholder" aria-labelledby="section-title"
+                 style="--card-tint:${section.tint};--card-color:${section.color}">
+          <span class="card-icon">${icon(section.icon)}</span>
+          <h1 id="section-title">${section.title}</h1>
+          <p>${message}</p>
+          <a class="back-link" href="#home">الْعَوْدَةُ إِلَى الرَّئِيسِيَّةِ</a>
+        </section>
+      `;
+    }
+
+    function renderRoute() {
+      stopAudio();
+
+      const route = decodeURIComponent(location.hash.slice(1)) || "home";
+
+      const selectedLesson = qaidaLessons.find(
+        lesson => lesson.route === route
+      );
+
+      const section = sections.find(item => item.id === route) ||
+        (selectedLesson
+          ? sections.find(item => item.id === "qaida")
+          : sections[0]);
+
+      if (section.id === "home") {
+        renderHome();
+      } else if (selectedLesson) {
+        activeLesson = selectedLesson;
+        lessonState = lessonStates.get(selectedLesson.route);
+        renderLesson();
+      } else if (section.id === "qaida") {
+        renderQaidaIndex();
+      } else {
+        renderSection(section);
+      }
+
+      document.querySelectorAll(".nav-link").forEach(link => {
+        if (link.dataset.route === section.id) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+
+      document.title = `${
+        selectedLesson ? selectedLesson.title : section.title
+      } | نوراني تجويد كِدز`;
+
+      content.focus({ preventScroll: true });
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    screen.addEventListener("click", event => {
+      const button = event.target.closest("button[data-action]");
+
+      if (!button || !screen.contains(button)) return;
+
+      const action = button.dataset.action;
+      const card = button.closest(".harakat-card");
+
+      if (action === "select-example" && card) {
+        const id = card.dataset.harakah;
+        const index = Number(button.dataset.index);
+
+        lessonState.selectedExamples[id] = index;
+
+        card.querySelectorAll(".example-button").forEach(exampleButton => {
+          exampleButton.setAttribute(
+            "aria-pressed",
+            String(exampleButton === button)
+          );
+        });
+
+        return;
+      }
+
+      if ((action === "play" || action === "repeat") && card) {
+        const harakah = activeLesson.harakat.find(
+          item => item.id === card.dataset.harakah
+        );
+
+        playExample(
+          harakah,
+          lessonState.selectedExamples[harakah.id],
+          action === "repeat" ? 2 : 1,
+          card.querySelector(".audio-status")
+        );
+
+        return;
+      }
+
+      if (action === "go-practice") {
+        const heading = screen.querySelector("#practice-title");
+
+        heading.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "instant"
+            : "smooth",
+          block: "start"
+        });
+
+        heading.focus({ preventScroll: true });
+        return;
+      }
+
+      if (action === "answer") {
+        handleAnswer(button);
+        return;
+      }
+
+      if (action === "next") {
+        if (lessonState.questionIndex <
+            activeLesson.questions.length - 1) {
+          lessonState.questionIndex++;
+        } else {
+          lessonState.questionIndex = 0;
+          lessonState.completed = 0;
+          updateProgress();
+        }
+
+        renderQuestion();
+        screen.querySelector(".answer-button")?.focus();
+      }
+    });
+
+    window.addEventListener("hashchange", renderRoute);
+    renderRoute();
+  </script>
+</body>
+</html>
